@@ -16,7 +16,7 @@ module grad_tb();
    
     wire[15:0] Gx[0:3][0:3];
     wire[15:0] Gy[0:3][0:3];
-    wire rdy;
+    
    
     reg[7:0] arr [0:5][0:5];
     integer i;
@@ -32,7 +32,7 @@ module grad_tb();
     end
    
     
-    gradient grad(.reset(reset),.win_valid(winvalid),.clk(clk),.window(arr),.Gx(Gx),.Gy(Gy),.rdy(rdy));
+    gradient grad(.reset(reset),.win_valid(winvalid),.clk(clk),.window(arr),.Gx(Gx),.Gy(Gy));
     display disp(.window(arr),.Gx(Gx),.Gy(Gy));
 
 endmodule
