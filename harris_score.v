@@ -1,6 +1,6 @@
 module(input [7:0] Gx[0:3][0:3], input clk, input [7:0] Gy[0:3][0:3], output [32:0] R, output rdy);
 
-reg [7:0] Matrix[0:1][0:1];
+reg [15:0] Matrix[0:1][0:1];
 wire [15:0]  det
 wire [15:0] trace;
 
@@ -30,7 +30,7 @@ trace <= Matrix[0][0] + Matrix[1][1];
 end
 
 always@(posedge clk) begin
-R <= (det - trace*trace);
+R <= (det - k*trace*trace);
 rdy <= 'd1;
 end
 
