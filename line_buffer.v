@@ -3,7 +3,7 @@ input   i_clk,
 input   i_rst,
 input [7:0] i_data,
 input   i_data_valid,
-output [47:0] o_data,
+output [7:0] o_data[0:5],
 input i_rd_data
 );
 
@@ -25,7 +25,12 @@ begin
         wrPntr <= wrPntr + 'd1;
 end
 
-assign o_data = {line[rdPntr],line[rdPntr+1],line[rdPntr+2]};
+assign o_data[0] = line[rdPntr];
+assign o_data[1] = line[rdPntr+1];
+assign o_data[2] = line[rdPntr+2];
+assign o_data[3] = line[rdPntr+3];
+assign o_data[4] = line[rdPntr+4];
+assign o_data[5] = line[rdPntr+5];
 
 always @(posedge i_clk)
 begin

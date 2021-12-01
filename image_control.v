@@ -3,7 +3,8 @@ input                    i_clk,
 input                    i_rst,
 input [7:0]              i_pixel_data,
 input                    i_pixel_data_valid,
-output reg [287:0]       o_pixel_data,
+//output reg [287:0]       o_pixel_data,
+output reg [7:0]         o_2d_pixel_data[0:5][0:5],
 output                   o_pixel_data_valid,
 output reg               o_intr
 );
@@ -32,6 +33,7 @@ reg rd_line_buffer;
 reg rdState;
 
 assign o_pixel_data_valid = rd_line_buffer;
+
 
 localparam IDLE = 'b0,
            RD_BUFFER = 'b1;
@@ -150,6 +152,7 @@ begin
         end
 
     endcase
+    
 end
 
 always @(*)
