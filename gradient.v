@@ -1,5 +1,5 @@
  
-module gradient(input reset,input win_valid,input clk, input [7:0] window[0:5][0:5], output [15:0] Gx[0:3][0:3], output [15:0] Gy[0:3][0:3],output rdy);
+module gradient(input reset,input win_valid,input clk, input [7:0] window[0:5][0:5], output [15:0] Gx[0:3][0:3], output [15:0] Gy[0:3][0:3]);
   
 
     genvar i;
