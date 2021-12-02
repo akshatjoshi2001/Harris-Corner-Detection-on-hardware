@@ -126,7 +126,7 @@ begin
     else
     begin
         if(rdCounter == 479 & read_line_buffer)
-            currentReadLineBufferNum <= currentReadLineBufferNum + 1;
+            currentReadLineBufferNum <= (currentReadLineBufferNum + 1)%7;
     end
 end
 integer p, q;
