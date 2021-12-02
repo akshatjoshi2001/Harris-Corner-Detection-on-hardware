@@ -88,7 +88,7 @@ begin
     else
     begin
         if(pixelCounter == 479 & pixel_valid)
-            currentWriteLineBufferNum <= currentWriteLineBufferNum + 1;
+            currentWriteLineBufferNum <= (currentWriteLineBufferNum + 1)%7;
     end
 end
 
@@ -163,7 +163,7 @@ genvar i;
 generate   
     for(i=0;i<=6;i=i+1) begin:lbArray
         wire[7:0] lb_out[0:5];
-        
+
         assign lb_out[0] = lbOut[i][0];
         assign lb_out[1] = lbOut[i][1];
         assign lb_out[2] = lbOut[i][2];
