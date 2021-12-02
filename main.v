@@ -13,7 +13,7 @@ imageControl ic(.clk(clk),.reset(reset),.pixel(pixel),.pixel_valid(pixel_valid),
 
 gradient g(.clk(clk),.reset(reset),.win_valid(window_valid),.window(window),.Gx(Gx),.Gy(Gy));
 
-display d(.window(window),.Gx(Gx),.Gy(Gy));
+display d(.clk(clk),.window(window),.Gx(Gx),.Gy(Gy));
 
 
 endmodule

@@ -22,7 +22,7 @@ begin
     if(i_rst)
         wrPntr <= 'd0;
     else if(i_data_valid)
-        wrPntr <= wrPntr + 'd1;
+        wrPntr <= (wrPntr + 'd1)%480;
 end
 
 assign o_data[0] = line[rdPntr];
@@ -37,7 +37,7 @@ begin
     if(i_rst)
         rdPntr <= 'd0;
     else if(i_rd_data)
-        rdPntr <= rdPntr + 'd1;
+        rdPntr <= (rdPntr + 'd1)%475;
 end
 
 

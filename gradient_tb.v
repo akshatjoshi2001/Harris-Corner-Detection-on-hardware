@@ -1,6 +1,7 @@
 // Test bench to verify sobel filter. 
-`timescale 1ns/1ns
+//`timescale 1ns/1ns
 `define ENABLE_TB 1'b1
+/*
 module grad_tb();
    
     reg clk;
@@ -32,18 +33,18 @@ module grad_tb();
     end
    
     
-    gradient grad(.reset(reset),.win_valid(winvalid),.clk(clk),.window(arr),.Gx(Gx),.Gy(Gy));
-    display disp(.window(arr),.Gx(Gx),.Gy(Gy));
+    //gradient grad(.reset(reset),.win_valid(winvalid),.clk(clk),.window(arr),.Gx(Gx),.Gy(Gy));
+    //display disp(.window(arr),.Gx(Gx),.Gy(Gy));
 
 endmodule
+*/
 
-
-module display(input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],input[15:0] Gy[0:3][0:3]);
+module display(input clk,input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],input[15:0] Gy[0:3][0:3]);
     integer i;
     integer j;
    
     
-    always@(*) begin
+    always@(posedge clk) begin
         if(`ENABLE_TB) begin
             $display("=====Window=====");
             for(i=0;i<6;i=i+1) begin
@@ -56,7 +57,7 @@ module display(input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],input[15:0] 
                 end
 
 
-
+                /*
                 $display("---Gx---");
                 for(i=0;i<4;i=i+1) begin
                     
@@ -75,6 +76,7 @@ module display(input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],input[15:0] 
                     $write("\n");
                 
                 end
+                */
         end
     end
 

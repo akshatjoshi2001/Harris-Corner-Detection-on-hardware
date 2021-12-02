@@ -14,13 +14,22 @@ initial
  end
 always #5 clk = ~clk;
 
+integer count;
 initial begin
+    $dumpfile("test.vcd");
+    $dumpvars(0,harris_tb);
     file = $fopen("android.bin","rb");
+    count = 0;
+    reset = 1;
+    #6
+    reset = 0;
+    #50000
+    $finish;
     
-    reset = 0;
-    #10
-    $display("reset initiated");
-    reset = 0;
+    
+    
+
+    
 
 
  
@@ -31,12 +40,20 @@ initial begin
 end
 
 always@(posedge clk) begin
-    $display("clk");
+    /*count = count+1;
+    if(count > 1000) begin
+        $finish;
+    end
+    */
     if(!reset) begin    
         pixel <= $fgetc(file);
         pixel_valid <= 1;
-          $display(pixel);
+         
 
+    end else begin 
+        pixel <= 0;
+        pixel_valid <= 0;
+       
     end
   
    
