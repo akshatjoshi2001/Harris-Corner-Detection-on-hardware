@@ -12,7 +12,7 @@ reg [8:0] pixelCounter;
 reg [8:0] rdCounter;
 reg [2:0] currentWriteLineBufferNum;
 reg [2:0] currentReadLineBufferNum;
-reg[7:0] lBout[0:6][0:5];
+reg[7:0] lbOut[0:6][0:5];
 reg [6:0] lineBuffDataValid;
 reg read_line_buffer;
 reg [6:0] lineBuffReadData;
@@ -159,13 +159,25 @@ assign window_valid = read_line_buffer;
 
 
 genvar i;
+
 generate   
-    for(i=0;i<=6;i=i+1) begin
+    for(i=0;i<=6;i=i+1) begin:lbArray
+        wire[7:0] lb_out[0:5];
+        
+        assign lb_out[0] = lbOut[i][0];
+        assign lb_out[1] = lbOut[i][1];
+        assign lb_out[2] = lbOut[i][2];
+        assign lb_out[3] = lbOut[i][3];
+        assign lb_out[4] = lbOut[i][4];
+        assign lb_out[5] = lbOut[i][5];
+        
+        
         lineBuffer lB(
             .i_clk(clk),
             .i_rst(reset),
             .i_data(pixel),
-            .i_data_valid(lineBuffDataValid[i]),            
+            .i_data_valid(lineBuffDataValid[i]),
+            .o_data(lb_out),            
             .i_rd_data(lineBuffReadData[i])
         ); 
     end
