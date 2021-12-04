@@ -4,10 +4,16 @@ input                    reset,
 input [7:0]              pixel,
 input                    pixel_valid,
 output reg [7:0]         window[0:5][0:5],
-output                   window_valid
+output                   window_valid,
+output reg[15:0]         count
 );
 
 // reg 
+
+initial begin
+    count = 0;
+end
+
 reg [8:0] pixelCounter;
 reg [8:0] rdCounter;
 reg [2:0] currentWriteLineBufferNum;
@@ -53,6 +59,7 @@ begin
                 end
             end
             RD_BUFFER:begin
+                count <= count+1;
                 if(rdCounter == 479)
                 begin
                     rdState <= IDLE;

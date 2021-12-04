@@ -6,6 +6,7 @@ reg reset;
 reg[7:0] pixel;
 reg pixel_valid;
 reg ImageData;
+
 integer file;
 initial
  begin
@@ -14,16 +15,15 @@ initial
  end
 always #5 clk = ~clk;
 
-integer count;
+
 initial begin
     $dumpfile("test.vcd");
     $dumpvars(0,harris_tb);
-    file = $fopen("android.bin","rb");
-    count = 0;
+    file = $fopen("chess.bin","rb");
     reset = 1;
     #6
     reset = 0;
-    #50000
+    #500000
     $finish;
     
     
@@ -39,6 +39,8 @@ initial begin
 
 end
 
+
+
 always@(posedge clk) begin
     /*count = count+1;
     if(count > 1000) begin
@@ -48,7 +50,8 @@ always@(posedge clk) begin
     if(!reset) begin    
         pixel <= $fgetc(file);
         pixel_valid <= 1;
-         
+        
+                 
 
     end else begin 
         pixel <= 0;
