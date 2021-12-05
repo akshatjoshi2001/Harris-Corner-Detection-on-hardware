@@ -39,7 +39,7 @@ module grad_tb();
 endmodule
 */
 
-module display(input clk,input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],input[15:0] Gy[0:3][0:3], input[63:0] R,input[63:0] count);
+module display(input clk,input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],input[15:0] Gy[0:3][0:3], input[63:0] R,input[63:0] count, input isCorner);
     integer i;
     integer j;
    
@@ -81,8 +81,9 @@ module display(input clk,input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],in
             
             //$display("=====Harris Score=====");
             //$write(" %d \n",count);
-            if($signed(R)>(1<<16))begin
-                // $write("HERE Count =  %d, R = %d \n",count,$signed(R));
+            // if($signed(R) >= (1<<32))begin
+            if(isCorner)begin
+                //$write("HERE R = %d \n",$signed(R));
                 $write(" %d \n",count);
             end
           
