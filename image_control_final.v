@@ -25,6 +25,14 @@ reg [6:0] lineBuffReadData;
 reg [12:0] totalPixelCounter;
 reg rdState;
 
+wire [7:0] lb0data[0:5];
+wire [7:0] lb1data[0:5];
+wire [7:0] lb2data[0:5];
+wire [7:0] lb3data[0:5];
+wire [7:0] lb4data[0:5];
+wire [7:0] lb5data[0:5];
+wire [7:0] lb6data[0:5];
+
 localparam IDLE = 'b0,
            RD_BUFFER = 'b1;
 
@@ -98,6 +106,7 @@ begin
     begin
         if(pixelCounter == 479 & pixel_valid)
             currentWriteLineBufferNum <= (currentWriteLineBufferNum + 1)%7;
+            //$display("Current Write Line Buffer Num %d",currentWriteLineBufferNum);
     end
 end
 
@@ -122,7 +131,7 @@ begin
     else 
     begin
         if(read_line_buffer)
-            rdCounter <= (rdCounter + 1)%480;
+            rdCounter <= (rdCounter + 1)%474;
            // $display("Read Counter %d",rdCounter);
     end
 end
@@ -136,8 +145,9 @@ begin
     end
     else
     begin
-        if(rdCounter == 479 & read_line_buffer)
+        if(rdCounter == 473 & read_line_buffer)
             currentReadLineBufferNum <= (currentReadLineBufferNum + 1)%7;
+            //$display("Current Read Line Buffer Num %d",currentReadLineBufferNum);
          
     end
 end
@@ -165,43 +175,255 @@ integer k;
 
 always @(*)
 begin
-
-    for(k=0;k<=5;k=k+1) begin
-        for(q=0; q<=5; q=q+1)begin
-           window[k][q] = lbOut[(currentReadLineBufferNum+k+1)%7][q]; 
+    case(currentReadLineBufferNum)
+        0:begin
+            for(q=0; q<=5; q=q+1)begin
+                window[0][q] = lb0data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[1][q] = lb1data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[2][q] = lb2data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[3][q] = lb3data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[4][q] = lb4data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[5][q] = lb5data[q];
+            end
         end
-    end
-        
+        1:begin
+            for(q=0; q<=5; q=q+1)begin
+                window[0][q] = lb1data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[1][q] = lb2data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[2][q] = lb3data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[3][q] = lb4data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[4][q] = lb5data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[5][q] = lb6data[q];
+            end
+        end
+        2:begin
+            for(q=0; q<=5; q=q+1)begin
+                window[0][q] = lb2data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[1][q] = lb3data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[2][q] = lb4data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[3][q] = lb5data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[4][q] = lb6data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[5][q] = lb0data[q];
+            end
+        end
+        3:begin
+            for(q=0; q<=5; q=q+1)begin
+                window[0][q] = lb3data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[1][q] = lb4data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[2][q] = lb5data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[3][q] = lb6data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[4][q] = lb0data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[5][q] = lb1data[q];
+            end
+        end
+        4:begin
+            for(q=0; q<=5; q=q+1)begin
+                window[0][q] = lb4data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[1][q] = lb5data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[2][q] = lb6data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[3][q] = lb0data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[4][q] = lb1data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[5][q] = lb2data[q];
+            end
+        end
+        5:begin
+            for(q=0; q<=5; q=q+1)begin
+                window[0][q] = lb5data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[1][q] = lb6data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[2][q] = lb0data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[3][q] = lb1data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[4][q] = lb2data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[5][q] = lb3data[q];
+            end
+        end
+        6:begin
+            for(q=0; q<=5; q=q+1)begin
+                window[0][q] = lb6data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[1][q] = lb0data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[2][q] = lb1data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[3][q] = lb2data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[4][q] = lb3data[q];
+            end
+            for(q=0; q<=5; q=q+1)begin
+                window[5][q] = lb4data[q];
+            end
+        end
+
+    endcase
 end
 
+// always @(*)
+// begin
 
-genvar i;
+//     for(k=0;k<=5;k=k+1) begin
+//         for(q=0; q<=5; q=q+1)begin
+//            window[k][q] = lbOut[(currentReadLineBufferNum+k)%7][q]; 
+//         end
+//     end
+        
+// end
 
-generate   
-    for(i=0;i<=6;i=i+1) begin:lbArray
-        wire[7:0] lb_out[0:5];
 
-        assign lbOut[i][0] = lb_out[0]; 
-        assign lbOut[i][1] = lb_out[1]; 
-        assign lbOut[i][2] = lb_out[2]; 
-        assign lbOut[i][3] = lb_out[3]; 
-        assign lbOut[i][4] = lb_out[4]; 
-        assign lbOut[i][5] = lb_out[5];
+// genvar i;
+
+// generate   
+//     for(i=0;i<=6;i=i+1) begin:lbArray
+//         wire[7:0] lb_out[0:5];
+
+//         assign lbOut[i][0] = lb_out[0]; 
+//         assign lbOut[i][1] = lb_out[1]; 
+//         assign lbOut[i][2] = lb_out[2]; 
+//         assign lbOut[i][3] = lb_out[3]; 
+//         assign lbOut[i][4] = lb_out[4]; 
+//         assign lbOut[i][5] = lb_out[5];
+        
         
           
         
-        lineBuffer lB(
-            .i_clk(clk),
-            .i_rst(reset),
-            .i_data(pixel),
-            .i_data_valid(lineBuffDataValid[i]),
-            .o_data(lb_out),            
-            .i_rd_data(lineBuffReadData[i])
-        ); 
-    end
+//         lineBuffer lB(
+//             .i_clk(clk),
+//             .i_rst(reset),
+//             .i_data(pixel),
+//             .i_data_valid(lineBuffDataValid[i]),
+//             .o_data(lb_out),            
+//             .i_rd_data(lineBuffReadData[i])
+//         ); 
+//     end
   
 
-endgenerate
+// endgenerate
+
+lineBuffer lB0(
+    .i_clk(clk),
+    .i_rst(reset),
+    .i_data(pixel),
+    .i_data_valid(lineBuffDataValid[0]),
+    .o_data(lb0data),
+    .i_rd_data(lineBuffReadData[0])
+ ); 
+
+ lineBuffer lB1(
+     .i_clk(clk),
+    .i_rst(reset),
+    .i_data(pixel),
+     .i_data_valid(lineBuffDataValid[1]),
+     .o_data(lb1data),
+     .i_rd_data(lineBuffReadData[1])
+  ); 
+
+  lineBuffer lB2(
+      .i_clk(clk),
+    .i_rst(reset),
+    .i_data(pixel),
+      .i_data_valid(lineBuffDataValid[2]),
+      .o_data(lb2data),
+      .i_rd_data(lineBuffReadData[2])
+   ); 
+
+   lineBuffer lB3(
+       .i_clk(clk),
+    .i_rst(reset),
+    .i_data(pixel),
+       .i_data_valid(lineBuffDataValid[3]),
+       .o_data(lb3data),
+       .i_rd_data(lineBuffReadData[3])
+    );
+
+    lineBuffer lB4(
+       .i_clk(clk),
+    .i_rst(reset),
+    .i_data(pixel),
+       .i_data_valid(lineBuffDataValid[4]),
+       .o_data(lb4data),
+       .i_rd_data(lineBuffReadData[4])
+    );
+
+    lineBuffer lB5(
+       .i_clk(clk),
+    .i_rst(reset),
+    .i_data(pixel),
+       .i_data_valid(lineBuffDataValid[5]),
+       .o_data(lb5data),
+       .i_rd_data(lineBuffReadData[5])
+    );
+
+    lineBuffer lB6(
+       .i_clk(clk),
+    .i_rst(reset),
+    .i_data(pixel),
+       .i_data_valid(lineBuffDataValid[6]),
+       .o_data(lb6data),
+       .i_rd_data(lineBuffReadData[6])
+    );
+
 
 
 

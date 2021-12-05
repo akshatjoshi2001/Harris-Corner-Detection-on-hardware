@@ -38,13 +38,13 @@ integer q;
 always@(posedge clk) begin
   
   R <=  R_;
-  for (p=0; p<2; p=p+1) begin
-    for (q=0; q<2; q=q+1) begin
-      $write("%d ",Matrix[p][q]);
-    end
-    $write("\n");
-  end
-  $display("Determinant = %d, Trace = %d, R=%d ", $signed(det), $signed(trace_sq_scaled),$signed(R_));
+  // for (p=0; p<2; p=p+1) begin
+  //   for (q=0; q<2; q=q+1) begin
+  //     $write("%d ",Matrix[p][q]);
+  //   end
+  //   $write("\n");
+  // end
+  //$display("Determinant = %d, Trace = %d, R=%d ", $signed(det), $signed(trace_sq_scaled),$signed(R_));
   rdy <= 'd1;
 end
 

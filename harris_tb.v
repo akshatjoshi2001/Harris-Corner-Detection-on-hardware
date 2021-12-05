@@ -23,7 +23,7 @@ initial begin
     reset = 1;
     #6
     reset = 0;
-    #100000
+    #1000000
     $finish;
     
     

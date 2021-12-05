@@ -47,41 +47,43 @@ module display(input clk,input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],in
     always@(posedge clk) begin
         if(1) begin
             
-            $display("=====Window=====  Count = %d ",count);
-            for(i=0;i<6;i=i+1) begin
+            // $display("=====Window=====  Count = %d ",count);
+            // for(i=0;i<6;i=i+1) begin
                     
-                    for(j=0;j<6;j=j+1) begin
-                        $write("%d,",window[i][j]);
-                    end
-                    $write("\n");
+            //         for(j=0;j<6;j=j+1) begin
+            //             $write("%d,",window[i][j]);
+            //         end
+            //         $write("\n");
                 
-                end
+            //     end
 
 
                 
-                $display("---Gx---");
-                for(i=0;i<4;i=i+1) begin
+                // $display("---Gx---");
+                // for(i=0;i<4;i=i+1) begin
                     
-                    for(j=0;j<4;j=j+1) begin
-                        $write("%d ",$signed(Gx[i][j]));
-                    end
-                    $write("\n");
+                //     for(j=0;j<4;j=j+1) begin
+                //         $write("%d ",$signed(Gx[i][j]));
+                //     end
+                //     $write("\n");
                 
-                end
-                $display("\n---Gy---");
-                for(i=0;i<4;i=i+1) begin
+                // end
+                // $display("\n---Gy---");
+                // for(i=0;i<4;i=i+1) begin
                     
-                    for(j=0;j<4;j=j+1) begin
-                        $write("%d ",$signed(Gy[i][j]));
-                    end
-                    $write("\n");
+                //     for(j=0;j<4;j=j+1) begin
+                //         $write("%d ",$signed(Gy[i][j]));
+                //     end
+                //     $write("\n");
                 
-                end
+                // end
                 
             
             //$display("=====Harris Score=====");
-            if($signed(R)>1<<16)begin
-                $write("HERE Count =  %d, R = %d \n",count,$signed(R));
+            //$write(" %d \n",count);
+            if($signed(R)>(1<<16))begin
+                // $write("HERE Count =  %d, R = %d \n",count,$signed(R));
+                $write(" %d \n",count);
             end
           
             
