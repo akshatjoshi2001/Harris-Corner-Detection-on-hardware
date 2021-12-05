@@ -39,14 +39,15 @@ module grad_tb();
 endmodule
 */
 
-module display(input clk,input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],input[15:0] Gy[0:3][0:3], input[63:0] R,input[15:0] count);
+module display(input clk,input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],input[15:0] Gy[0:3][0:3], input[63:0] R,input[63:0] count);
     integer i;
     integer j;
    
     
     always@(posedge clk) begin
         if(1) begin
-            $display("=====Window=====");
+            
+            $display("=====Window=====  Count = %d ",count);
             for(i=0;i<6;i=i+1) begin
                     
                     for(j=0;j<6;j=j+1) begin
@@ -77,13 +78,12 @@ module display(input clk,input[7:0] window[0:5][0:5],input[15:0] Gx[0:3][0:3],in
                 
                 end
                 
-
-            $display("=====Harris Score=====");
-            if($signed(R) >= $signed(1))begin
-                $write("HERE %d",count);
+            
+            //$display("=====Harris Score=====");
+            if($signed(R)>1<<16)begin
+                $write("HERE Count =  %d, R = %d \n",count,$signed(R));
             end
-            $write("%d,",$signed(R));
-            $write("\n");
+          
             
 
 

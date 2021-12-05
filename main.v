@@ -11,7 +11,7 @@ wire[15:0] Gy[0:3][0:3];
 
 wire[63:0] R;
 wire rdy;
-wire[15:0] count;
+wire[63:0] count;
 
 
 

@@ -37,7 +37,7 @@ begin
     if(i_rst)
         rdPntr <= 'd0;
     else if(i_rd_data)
-        rdPntr <= (rdPntr + 'd1)%475;
+        rdPntr <= (rdPntr + 'd1)%474;
 end
 
 

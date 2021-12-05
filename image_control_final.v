@@ -5,7 +5,7 @@ input [7:0]              pixel,
 input                    pixel_valid,
 output reg [7:0]         window[0:5][0:5],
 output                   window_valid,
-output reg[15:0]         count
+output reg[63:0]         count
 );
 
 // reg 
@@ -83,7 +83,7 @@ begin
         if(pixel_valid)
 
             pixelCounter <= (pixelCounter + 1)%480;
-            $display("Pixel Count: %d",pixelCounter);
+           // $display("Pixel Count: %d",pixelCounter);
     end
 end
 
@@ -106,7 +106,7 @@ always @(*)
 begin
     lineBuffDataValid = 7'h0;
     lineBuffDataValid[currentWriteLineBufferNum] = pixel_valid;
-    $display("lineBuffDataValid: %d \n currentWriteLineBufferNum: %d",lineBuffDataValid,currentWriteLineBufferNum);
+    //$display("lineBuffDataValid: %d \n currentWriteLineBufferNum: %d",lineBuffDataValid,currentWriteLineBufferNum);
 end
 
 //---Write
@@ -123,7 +123,7 @@ begin
     begin
         if(read_line_buffer)
             rdCounter <= (rdCounter + 1)%480;
-            $display("Read Counter %d",rdCounter);
+           // $display("Read Counter %d",rdCounter);
     end
 end
 
@@ -168,7 +168,7 @@ begin
 
     for(k=0;k<=5;k=k+1) begin
         for(q=0; q<=5; q=q+1)begin
-           window[k][q] = lbOut[(currentReadLineBufferNum+k)%7][q]; 
+           window[k][q] = lbOut[(currentReadLineBufferNum+k+1)%7][q]; 
         end
     end
         
