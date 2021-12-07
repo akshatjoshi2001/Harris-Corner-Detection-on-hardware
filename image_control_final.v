@@ -60,7 +60,7 @@ begin
     begin
         case(rdState)
             IDLE:begin
-                if(totalPixelCounter >= 2880)
+                if(totalPixelCounter >= 3072)
                 begin
                     read_line_buffer <= 1'b1;
                     rdState <= RD_BUFFER;

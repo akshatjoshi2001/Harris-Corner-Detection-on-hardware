@@ -23,5 +23,14 @@ harris_score h(.clk(clk), .Gx(Gx), .Gy(Gy), .R(R), .rdy(rdy));
 
 display d(.clk(clk),.window(window),.Gx(Gx),.Gy(Gy), .R(R),.count(count));
 
+assign R32 = R[63:32];
+
+imageControl2 ic2(.clk(clk),.reset(reset),.pixel(R32),.pixel_valid(pixel_valid),.window(window2),.window_valid(window_valid), .count1(count1));
+
+checkCorner cc(.clk(clk),.reset(reset),.window(window2),.isCorner(isCorner));
+
+
+display d(.clk(clk),.window(window),.Gx(Gx),.Gy(Gy), .R(R),.count(count1), .isCorner(isCorner));
+
 
 endmodule
