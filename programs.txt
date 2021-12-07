@@ -4,4 +4,8 @@ gradient.v
 gradient_tb.v
 image_control_final.v
 line_buffer.v
+image_control_2.v
+checkcorner.v
 main.v
+
+
