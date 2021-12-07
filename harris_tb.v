@@ -1,6 +1,7 @@
 
   
 `timescale 1ns / 1ps
+`define opsize 63
 module harris_tb();
 
 reg clk;
