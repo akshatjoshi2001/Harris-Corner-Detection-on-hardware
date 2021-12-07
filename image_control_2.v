@@ -87,7 +87,7 @@ begin
     begin
         if(pixel_valid)
 
-            pixelCounter <= (pixelCounter + 1)%474;
+            pixelCounter <= (pixelCounter + 1);
             //$display("Pixel Count: %d",pixelCounter);
     end
 end
