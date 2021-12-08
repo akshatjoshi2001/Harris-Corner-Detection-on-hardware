@@ -32,8 +32,9 @@ try:
     #	for p in range(max(0, i-3), min(len(img), i + 3)):
     #		for q in range(max(0, j-3), min(len(img[0]), j + 3)):
         new_img[i][j] = (0, 0, 255)
+
+    cv2.imwrite("image_with_corners.bmp",new_img)
     cv2.imshow("Harris Detector Output", new_img)  
-   
     cv2.waitKey(0)    
     
     cv2.destroyAllWindows() 
