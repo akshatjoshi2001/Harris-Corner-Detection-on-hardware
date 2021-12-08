@@ -4,7 +4,7 @@ import numpy as np
 import sys
 
 
-filename="chess.jpg"  # Default image for testing
+filename="images/chess.jpg"  # Default image for testing
 
 if(len(sys.argv) >= 2):
     filename = str(sys.argv[1])
