@@ -1,7 +1,7 @@
 harris_tb.v
-harris_score2.v
-gradient.v
-gradient_tb.v
-image_control_final.v
-line_buffer.v
-main.v
+rtl/harris_score.v
+rtl/gradient.v
+rtl/display.v
+rtl/image_control.v
+rtl/line_buffer.v
+rtl/main.v
