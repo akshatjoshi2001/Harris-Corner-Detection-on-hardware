@@ -22,7 +22,7 @@ always #5 clk = ~clk;
 initial begin
     $dumpfile("test.vcd");
     $dumpvars(0,harris_tb);
-    file = $fopen("images/file.bin","rb");
+    file = $fopen("file.bin","rb");
     reset = 1;
     #6
     reset = 0;
